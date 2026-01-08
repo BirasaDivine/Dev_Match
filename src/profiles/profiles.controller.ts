@@ -25,4 +25,7 @@ export class ProfilesController {
       message: 'Profile updated successfully',
     };
   }
+  @Delete(':id')
+  @HttpCode(HttpStatus.OK)
+  remove(@Param('id') id: string) {}
 }
