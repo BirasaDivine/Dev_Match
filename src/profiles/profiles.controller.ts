@@ -14,6 +14,9 @@ import { UpdateProfileDto } from './dto/UpdateProfileDto.dto';
 
 @Controller('profiles')
 export class ProfilesController {
+  Constructor (private profilesService: ProfileService){
+    
+  }
   @Get(':id')
   findAll(@Param('id') id: number) {
     return [{ id }];
