@@ -1,4 +1,14 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  HttpCode,
+  HttpStatus,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { CreateProfileDto } from './dto/create-profile.dto';
 import { UpdateProfileDto } from './dto/UpdateProfileDto.dto';
 
@@ -27,5 +37,9 @@ export class ProfilesController {
   }
   @Delete(':id')
   @HttpCode(HttpStatus.OK)
-  remove(@Param('id') id: string) {}
+  remove(@Param('id') id: string) {
+    return {
+      message: `Profile with id ${id} deleted successfully`,
+    };
+  }
 }
