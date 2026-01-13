@@ -11,24 +11,26 @@ import {
 } from '@nestjs/common';
 import { CreateProfileDto } from './dto/create-profile.dto';
 import { UpdateProfileDto } from './dto/UpdateProfileDto.dto';
+import { ProfilesService } from './profiles.service';
 
 @Controller('profiles')
 export class ProfilesController {
-  Constructor (private profilesService: ProfileService){
-    
+  constructor(private profilesService: ProfilesService) {}
+
+  @Get()
+  findAll() {
+    return this.profilesService.findAll();
   }
   @Get(':id')
-  findAll(@Param('id') id: number) {
+  findOne(@Param('id') id: number) {
     return [{ id }];
   }
 
   @Post()
   create(@Body() createProfileDto: CreateProfileDto) {
-    return {
-      name: createProfileDto.name,
-      description: createProfileDto.description,
-    };
+    return createProfileDto;
   }
+
   @Put(':id')
   update(@Param('id') id: string, @Body() updateProfileDto: UpdateProfileDto) {
     return {
